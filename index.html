@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Minesweeper Solver - AI-Powered</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="container">
+        <header class="header">
+            <h1 class="title">
+                <span class="title-text">Minesweeper</span>
+                <span class="title-solver">Solver</span>
+            </h1>
+            <p class="subtitle">AI-Powered Automatic Game Solving</p>
+        </header>
+
+        <main class="main-content">
+            <div class="upload-section">
+                <div class="upload-area" id="uploadArea">
+                    <div class="upload-icon">
+                        <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+                            <polyline points="7,10 12,15 17,10"></polyline>
+                            <line x1="12" y1="15" x2="12" y2="3"></line>
+                        </svg>
+                    </div>
+                    <h3>Upload Minesweeper Screenshot</h3>
+                    <p>Drag and drop your Minesweeper game screenshot here, or click to browse</p>
+                    <input type="file" id="fileInput" accept="image/*" hidden>
+                    <button class="upload-btn" onclick="document.getElementById('fileInput').click()">
+                        Choose File
+                    </button>
+                </div>
+            </div>
+
+            <div class="processing-section" id="processingSection" style="display: none;">
+                <div class="processing-animation">
+                    <div class="spinner"></div>
+                    <h3>Analyzing Game Board...</h3>
+                    <p id="processingStatus">Detecting grid and mines...</p>
+                </div>
+            </div>
+
+            <div class="results-section" id="resultsSection" style="display: none;">
+                <div class="game-display">
+                    <div class="original-image">
+                        <h3>Original Screenshot</h3>
+                        <canvas id="originalCanvas"></canvas>
+                    </div>
+                    <div class="solved-image">
+                        <h3>AI Solution</h3>
+                        <canvas id="solvedCanvas"></canvas>
+                    </div>
+                </div>
+                
+                <div class="solution-info">
+                    <div class="info-card">
+                        <h4>Game Statistics</h4>
+                        <div class="stats">
+                            <div class="stat">
+                                <span class="stat-label">Grid Size:</span>
+                                <span class="stat-value" id="gridSize">-</span>
+                            </div>
+                            <div class="stat">
+                                <span class="stat-label">Total Mines:</span>
+                                <span class="stat-value" id="totalMines">-</span>
+                            </div>
+                            <div class="stat">
+                                <span class="stat-label">Confidence:</span>
+                                <span class="stat-value" id="confidence">-</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="info-card">
+                        <h4>Solution Steps</h4>
+                        <div class="steps" id="solutionSteps">
+                            <!-- Solution steps will be populated here -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="error-section" id="errorSection" style="display: none;">
+                <div class="error-message">
+                    <div class="error-icon">⚠️</div>
+                    <h3>Processing Error</h3>
+                    <p id="errorText">Something went wrong while processing your image.</p>
+                    <button class="retry-btn" onclick="resetUpload()">Try Again</button>
+                </div>
+            </div>
+        </main>
+
+        <footer class="footer">
+            <p>Powered by Computer Vision & AI • Built with ❤️</p>
+        </footer>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
